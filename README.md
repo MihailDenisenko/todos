@@ -1,3 +1,7 @@
+🔍  Inspect: https://vercel.com/mikes-projects-1b83b583/todos-mm9xgdi4h-mikes-projects/1b83b583
+✅  Preview: https://todos-mihaildenisenko-mikes-projects-1b83b583.vercel.app
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
