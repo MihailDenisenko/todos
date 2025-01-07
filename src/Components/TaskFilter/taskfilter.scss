@@ -1,0 +1,77 @@
+
+.filters {
+	// margin-bottom: 0;
+	display: flex;
+	flex-wrap: nowrap;
+	margin: 0;
+	// margin-left: auto;
+	// margin-right: 15px;
+	padding: 0;
+	list-style: none;
+	right: 0;
+	left: 0;
+}
+
+.filters li {
+	display: inline;
+	cursor: default;
+}
+
+.filters li button {
+	display: inline-block;
+	color: inherit;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 3px solid transparent;
+	border-radius: 3px;
+}
+
+.filters li button:not(.selected) {
+	cursor: pointer;
+}
+
+.filters li:hover button {
+	border-color: rgb(74, 185, 222);
+}
+
+.filters li button.selected {
+	background-color: rgb(74, 185, 222);
+	color: white
+}
+
+
+.filters li a {
+	display: inline-block;
+	color: inherit;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 3px solid transparent;
+	border-radius: 3px;
+}
+
+.filters li a:not(.selected) {
+	cursor: pointer;
+}
+
+.filters li:hover a {
+	border-color: rgb(74, 185, 222);
+}
+
+.filters li a.selected {
+	background-color: rgb(74, 185, 222);
+	color: white
+}
+
+
+
+@media screen and (width<480px) {
+	.filters li button {
+		display: block;
+		margin-bottom: 25px;
+	}
+	.list-group-item:first-child {
+		margin-top: 25px;
+	}
+}
