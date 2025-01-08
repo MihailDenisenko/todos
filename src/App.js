@@ -1,18 +1,15 @@
-import React from "react";
-import { Routes, Route } from "react-router";
+import React from 'react';
+import { Routes, Route } from 'react-router';
 
-
-import "./styles/style.scss";
-import Header from "./Components/Header/Header";
-import Home from "./Components/pages/Home";
-import NotFound from "./Components/pages/NotFound";
+import './styles/style.scss';
+import Header from './Components/Header/Header';
+import Home from './Components/pages/Home';
+import NotFound from './Components/pages/NotFound';
 
 export default function App() {
-
   return (
     <div>
       <Header />
-   
 
       {/* <Footer /> */}
 
@@ -26,8 +23,6 @@ export default function App() {
     </div>
   );
 }
-
-
 
 //         <Route path="/Aктивные" element={<HomeActive />} />
 //         <Route path="/Выполненные" element={<HomeDone />} />

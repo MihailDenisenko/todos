@@ -1,57 +1,57 @@
 .header {
-	max-width: 675px;
-	display: flex;
-	justify-content: end;
-	align-items: center;
-    margin: 15px 0 15px 10px;
-	a {
-		display: flex;
-		text-decoration: none;
-		color: black
-	}
+  max-width: 675px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: 15px 0 15px 10px;
+  a {
+    display: flex;
+    text-decoration: none;
+    color: black;
+  }
 }
 
 .img-count {
-	width: 10%;
-	min-width: 60px;
+  width: 10%;
+  min-width: 60px;
 }
 
 .todo-count {
-	display: block;
-	position: absolute;
-	top: 25px;
-	right: 15px;
-	margin: auto;
-	// margin-right: 2rem;
-	text-align: right;
-	color: #999;
-	font-size: x-large;
-    font-weight: 700;
-	vertical-align: bottom;
+  display: block;
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  margin: auto;
+  // margin-right: 2rem;
+  text-align: right;
+  color: #999;
+  font-size: x-large;
+  font-weight: 700;
+  vertical-align: bottom;
 }
 
 .todo-count strong {
-	font-weight: 300;
+  font-weight: 300;
 }
 
 @media screen and (width<550px) {
-	.todo-count {
-		display: block;
-		position: relative;
-		top: 0;
-		right: 0;
-	}
+  .todo-count {
+    display: block;
+    position: relative;
+    top: 0;
+    right: 0;
+  }
 }
 
 @media screen and (width>660px) {
-	.todo-count {
-		display: block;
-		position: relative;
-		top: -50px;
-		left: 0;
-		// margin-left: 0;
-		margin-right: auto;
-	}
+  .todo-count {
+    display: block;
+    position: relative;
+    top: -50px;
+    left: 0;
+    // margin-left: 0;
+    margin-right: auto;
+  }
 }
 
 // @media screen and (width>900px) {

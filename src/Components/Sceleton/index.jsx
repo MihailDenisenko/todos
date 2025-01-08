@@ -1,4 +1,3 @@
-import Sceleton from "./Sceleton";
+import Sceleton from './Sceleton';
 
-
-export default Sceleton
+export default Sceleton;

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { BrowserRouter} from "react-router";
+import { BrowserRouter } from 'react-router';
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
 
@@ -10,11 +10,11 @@ root.render(
   // <React.StrictMode>
   <BrowserRouter>
     {/* <Routes> */}
-      {/* <Route path="/" element={<App />} /> */}
-      {/* <Route path="/:i" element={<App />} /> */}
+    {/* <Route path="/" element={<App />} /> */}
+    {/* <Route path="/:i" element={<App />} /> */}
     {/* </Routes> */}
     <App />
-  </BrowserRouter>
+  </BrowserRouter>,
   // {/* </React.StrictMode> */}
 );
 
