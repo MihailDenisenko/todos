@@ -24,7 +24,7 @@
     "prettierscss": "prettier --write src/**/*.scss",
     "prettierjson": "prettier --write ./**/*.json",
     "lint": "eslint --debug src/",
-    "lint:write": "eslint --debug src/ --fix"
+    "lint:write": "eslint --debug src/ --fix --color"
   },
   "eslintConfig": {
     "extends": [
@@ -56,5 +56,16 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.3.0",
     "prettier": "^3.4.2"
+  }, 
+  "husky": {
+    "hooks":{
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staget": {
+    "*.js":[
+      "npm run lint:fix",
+      "git add"
+    ]
   }
 }
