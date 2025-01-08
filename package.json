@@ -24,8 +24,9 @@
     "prettierscss": "prettier --write src/**/*.scss",
     "prettierjson": "prettier --write ./**/*.json",
     "lint": "eslint --debug src/",
-    "lint:write": "eslint --debug src/ --fix --color"
-  },
+    "lint:fix": "eslint --debug src/ --fix --color",
+    "format": "prettier --write src/**/*.*"
+    },
   "eslintConfig": {
     "extends": [
       "react-app",

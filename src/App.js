@@ -7,7 +7,6 @@ import Home from './Components/pages/Home';
 import NotFound from './Components/pages/NotFound';
 
 export default function App() {
-  const lebel = 15;
   return (
     <div>
       <Header />
