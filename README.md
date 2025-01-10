@@ -1,5 +1,5 @@
-🔍  Inspect: https://vercel.com/mikes-projects-1b83b583/todos-mm9xgdi4h-mikes-projects/1b83b583
-✅  Preview: https://todos-mihaildenisenko-mikes-projects-1b83b583.vercel.app
+<!-- Ссылка на приложение -->
+ https://todos-mihaildenisenko-mikes-projects-1b83b583.vercel.app
 
 
 # Getting Started with Create React App
