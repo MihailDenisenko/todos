@@ -1,5 +1,5 @@
 <!-- Ссылка на приложение -->
- todos-virid-eight.vercel.app
+ https://todos-virid-eight.vercel.app/
 
 
 
