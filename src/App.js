@@ -6,20 +6,26 @@ import Header from './Components/Header/Header';
 import Home from './Components/pages/Home';
 import NotFound from './Components/pages/NotFound';
 
+export const AppContext = React.createContext();
+
+
 export default function App() {
+  const [i, setI] = React.useState('hohoho')
   return (
     <div>
-      <Header />
+      <AppContext.Provider value={{ i, setI }}>
+        <Header />
 
-      {/* <Footer /> */}
+        {/* <Footer /> */}
 
-      <Routes>
-        <Route path="/" element={<Home />} />
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      {/* <NotFound /> */}
-      {/* <Home /> */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        {/* <NotFound /> */}
+        {/* <Home /> */}
+      </AppContext.Provider>
     </div>
   );
 }

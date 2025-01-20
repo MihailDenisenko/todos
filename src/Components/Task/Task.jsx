@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { formatDistance, toDate } from 'date-fns';
+import { formatDistance, toDate, format } from 'date-fns';
 import { ru } from 'date-fns/locale';
+import { AppContext } from '../../App';
 
 let spanClass = '';
 let buttonClass = '';
@@ -19,14 +20,24 @@ export default function Task({
   isBtnTk,
   btnTasked,
 }) {
+
+  const [timeNow, setTimeNow] = React.useState('');
+
+  const { i, setI } = React.useContext(AppContext);
+ 
+  const time = setInterval(() => {
+    setI(format(new Date(), 'h:m:s'));
+  }, 1000)
+  
+
   const [checked, setChecked] = React.useState(isCompleted);
   const [importance, setImportance] = React.useState(isDiscription);
-
+  
   const [a, setA] = React.useState(17);
   const [abc, setabc] = React.useState('');
   // const [classIcon, setclassIcon] = React.useState("");
   const [classIconComplet, setClassIconComplet] = React.useState('');
-
+  
   // eslint-disable-next-line no-unused-expressions
   isBtnTk.length === 0 ? console.log('isBtnTk') : btnTasked(isBtnTk);
 
@@ -72,7 +83,6 @@ export default function Task({
 
   //  Функция на важность дела
   function editing(eve) {
-    // console.log(checked)
     if (checked) {
     } else {
       // console.log(checked)
@@ -115,13 +125,14 @@ export default function Task({
     buttonClass = ' ';
   }
 
+
   return (
     <div className="view">
       <input className={!checked ? 'toggle ' : 'toggle completed'} type="checkbox" onChange={che} checked={checked} />
       <label>
-        <span className={`description ${spanClass}`}>{label}</span>
+        <span className={`description ${spanClass}`}>{`${label} ${i}`}</span>
         {/* <span className={checked ? "description completed" : "description" + abc}>{label}</span> */}
-        <span className="created  description">Создано {formatDate}</span>
+        <span className="created  description">Создано {formatDate} </span>
       </label>
       {/* <button
         className={isDiscription && checked === true ? `icon icon-edit editActive editActiveComplet` : `icon icon-edit ${classIcon} ${classIconComplet}`}

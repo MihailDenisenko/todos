@@ -3,6 +3,8 @@ import React from 'react';
 
 import TaskList from '../TaskList/TaskList ';
 import Footer from '../Footer';
+const HomeContext = React.createContext();
+
 
 export default function Home() {
   const [newTaskOfTaskList, setNewTask] = React.useState('');
@@ -11,6 +13,9 @@ export default function Home() {
   const [Time, setTime] = React.useState('');
   const [don, setDon] = React.useState(0);
   const [isBTntsk, setIsBtnTsk] = React.useState([]);
+  const [i, setI] = React.useState('hohoho')
+
+
   let isDone = '';
 
   if (doneTasks === 1) isDone = 'но';
