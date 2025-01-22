@@ -6,7 +6,7 @@ import { AppContext } from '../../App';
 const HomeContext = React.createContext();
 
 export default function Home() {
-  const {itemsAll, setItemsAll, setItems, items}= React.useContext(AppContext)
+  const { itemsAll, setItemsAll, setItems, items } = React.useContext(AppContext);
 
   const [newTaskOfTaskList, setNewTask] = React.useState('');
   const [allTasks, setTasks] = React.useState(0);
@@ -23,12 +23,11 @@ export default function Home() {
   else isDone = 'ны';
 
   const newTaskHome = (aaa) => {
-
     setNewTask(aaa);
-    let newItemsAll = itemsAll
+    let newItemsAll = itemsAll;
     newItemsAll.push(aaa);
-    setItemsAll(newItemsAll)
-    setItems(newItemsAll)
+    setItemsAll(newItemsAll);
+    setItems(newItemsAll);
   };
 
   const donedTasks = (doneTasks) => {
@@ -66,7 +65,7 @@ export default function Home() {
         Всего {allTasks} дел, {doneTasks} выполнен{isDone}
       </span>
 
-      <div className='div__home'>
+      <div className="div__home">
         <Footer newTaskAtHome={newTaskHome} timeAtHome={timeHome} onClickd={onClicked} />
         <TaskList
           onDeleted={(aa) => {

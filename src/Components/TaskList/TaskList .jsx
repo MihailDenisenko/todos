@@ -8,7 +8,6 @@ import { AppContext } from '../../App';
 let donedTask = 0;
 
 export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, tasksOf, isBtnTk }) {
-  
   const { itemsAll, setItemsAll, items, setItems, filterBtn } = React.useContext(AppContext);
   const [useItem, setUseItem] = React.useState('');
   // eslint-disable-next-line no-unused-vars
@@ -39,8 +38,8 @@ export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, ta
         return resp.json();
       })
       .then((json) => {
-        setItems(json)
-        setItemsAll(json)
+        setItems(json);
+        setItemsAll(json);
         sessionStorage.setItem('item', JSON.stringify(json));
         sessionStorage.setItem('items', JSON.stringify(items));
         setTimeout(() => {
@@ -86,8 +85,8 @@ export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, ta
           let a = items.filter((item) => item.id !== pos);
           setItems(a);
           tasksOf(items);
-          let newItemsAll = itemsAll.filter(item => item.id!==pos)
-          setItemsAll(newItemsAll)
+          let newItemsAll = itemsAll.filter((item) => item.id !== pos);
+          setItemsAll(newItemsAll);
           return resp.json();
         }
       })
@@ -97,20 +96,15 @@ export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, ta
   }
 
   const saved = () => {
-     fetch(
-       'https://676d32bb0e299dd2ddfec4d5.mockapi.io/items/',
-        {
-       method: "POST",
-       headers: { 'content-type': 'application/json' },
-       body: itemsAll
-       }
-     )
-       .then(resp => resp.json())
-       .then(json => console.log(json))
-       .catch(er => console.log(er))
-  }
-
-  
+    fetch('https://676d32bb0e299dd2ddfec4d5.mockapi.io/items/', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: itemsAll,
+    })
+      .then((resp) => resp.json())
+      .then((json) => console.log(json))
+      .catch((er) => console.log(er));
+  };
 
   React.useEffect(() => {
     if (isBtnTask.length !== 0) {
@@ -147,7 +141,6 @@ export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, ta
         />
       </li>
     );
-
   });
 
   return (
@@ -160,6 +153,5 @@ export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, ta
           : elements}
       </ul>
     </>
-
   );
 }

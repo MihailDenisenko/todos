@@ -182,23 +182,21 @@ icon.icon-edit {
   border-radius: 5px;
 }
 
-.play-pause{
+.play-pause {
   display: inline-block;
   margin-left: 15px;
   margin-right: 5px;
-  
-  
+
   .timer {
     margin-left: 10px;
     color: lightgreen;
   }
-   .timer-mini {
+  .timer-mini {
     margin-left: 10px;
     color: tomato;
   }
-  
+
   .play {
-  
     margin-right: 5px;
   }
 
@@ -206,17 +204,17 @@ icon.icon-edit {
     background: greenyellow;
     border-radius: 50%;
   }
-  
+
   .play:hover {
     padding: 2;
     background: greenyellow;
     border-radius: 50%;
   }
-  
+
   .pause:hover {
     padding: 2;
-   background: rgb(248, 162, 162);
-   border-radius: 60%;
+    background: rgb(248, 162, 162);
+    border-radius: 60%;
   }
   .dis:hover {
     border-radius: 50%;
@@ -229,9 +227,7 @@ icon.icon-edit {
     color: lightgreen;
   }
   .dist {
-    text-decoration:line-through;
+    text-decoration: line-through;
     color: grey;
   }
 }
-
-

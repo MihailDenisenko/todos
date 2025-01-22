@@ -87,8 +87,6 @@ export default function Task({
 
   // eslint-disable-next-line no-unused-expressions
 
-
-
   //  Функция на чекбокс
   function che() {
     // console.log(checked)
@@ -103,7 +101,7 @@ export default function Task({
           let newItemsAll = itemsAll.map((item) => {
             if (item.id === id) {
               item.checked = !checked;
-              item.isCompleted= !item.isCompleted
+              item.isCompleted = !item.isCompleted;
               return item;
             }
             return item;
@@ -130,7 +128,7 @@ export default function Task({
       })
       .catch((er) => console.dir(er));
     // console.log(id, checked)
-    
+
     setChecked(!checked);
     if (!importance && !checked) {
       // !checked ? setabc(" completedActive") : setabc(" Active");

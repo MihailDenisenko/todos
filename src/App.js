@@ -12,14 +12,14 @@ export const AppContext = React.createContext();
 export default function App() {
   const [i, setI] = React.useState(0);
   const [items, setItems] = React.useState([]);
-  const [filterBtn, setFilterBtn] = React.useState('')
+  const [filterBtn, setFilterBtn] = React.useState('');
   const [itemsAll, setItemsAll] = React.useState([]);
-   const [minutes, setMinutes] = React.useState(12);
-   const [seconds, setSeconds] = React.useState(25);
-    const [inputVal, setInputVal] = React.useState('')
-  
+  const [minutes, setMinutes] = React.useState(12);
+  const [seconds, setSeconds] = React.useState(25);
+  const [inputVal, setInputVal] = React.useState('');
+
   // itemsAll.length!==0?console.log(itemsAll):''
-  
+
   return (
     <div>
       <AppContext.Provider

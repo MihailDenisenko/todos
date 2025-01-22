@@ -13,7 +13,7 @@ export default function TaskFilter({ val, typeId, onClicked }) {
     if (btn === 'Все') {
       // console.log(itemsAll)
       let newItems = itemsAll.map((item) => item);
-      setItems(newItems)
+      setItems(newItems);
     }
     // eslint-disable-next-line no-unused-expressions
     if (btn === 'Aктивные') {
@@ -35,17 +35,20 @@ export default function TaskFilter({ val, typeId, onClicked }) {
   //   setItems(newItems)
   // }
 
-
   const btnsFotter = ['Все', 'Aктивные', 'Выполненные'];
   const buttons = btnsFotter.map((btn, ind) => {
     return (
       <li key={ind}>
-        <button onClick={() => {
-          setFilterBtn(btn)
-          buttonSetElement(btn, ind)
-          setElementActive(ind)
-          // console.log(itemsAll)
-        }} id={ind} className={elemActive === ind ? 'selected' : ''}>
+        <button
+          onClick={() => {
+            setFilterBtn(btn);
+            buttonSetElement(btn, ind);
+            setElementActive(ind);
+            // console.log(itemsAll)
+          }}
+          id={ind}
+          className={elemActive === ind ? 'selected' : ''}
+        >
           {btn}
         </button>
       </li>
