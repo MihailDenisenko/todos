@@ -60,7 +60,7 @@ export default function Task({
       clearInterval(interval);
     }
     let newItemAll = itemsAll.map((item) => {
-      if (item.id == id) {
+      if (item.id === id) {
         item.minutes = minuts;
         item.seconds = secunds;
         return item;
@@ -86,6 +86,8 @@ export default function Task({
   // isBtnTk.length === 0 ? console.log('isBtnTk') : btnTasked(isBtnTk);
 
   // eslint-disable-next-line no-unused-expressions
+
+
 
   //  Функция на чекбокс
   function che() {

@@ -5,7 +5,6 @@ import React from 'react';
 import Task from '../Task/Task';
 import Sceleton from '../Sceleton/Sceleton';
 import { AppContext } from '../../App';
-
 let donedTask = 0;
 
 export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, tasksOf, isBtnTk }) {
@@ -97,6 +96,20 @@ export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, ta
       });
   }
 
+  const saved = () => {
+     fetch(
+       'https://676d32bb0e299dd2ddfec4d5.mockapi.io/items/',
+        {
+       method: "POST",
+       headers: { 'content-type': 'application/json' },
+       body: itemsAll
+       }
+     )
+       .then(resp => resp.json())
+       .then(json => console.log(json))
+       .catch(er => console.log(er))
+  }
+
   
 
   React.useEffect(() => {
@@ -138,12 +151,15 @@ export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, ta
   });
 
   return (
-    <ul className="list-group todo-list">
-      {isLoading
-        ? [...new Array(4)].map((_, ind) => {
-            return <Sceleton key={ind} />;
-          })
-        : elements}
-    </ul>
+    <>
+      <ul className="list-group todo-list">
+        {isLoading
+          ? [...new Array(4)].map((_, ind) => {
+              return <Sceleton key={ind} />;
+            })
+          : elements}
+      </ul>
+    </>
+
   );
 }

@@ -66,7 +66,7 @@ export default function Home() {
         Всего {allTasks} дел, {doneTasks} выполнен{isDone}
       </span>
 
-      <div>
+      <div className='div__home'>
         <Footer newTaskAtHome={newTaskHome} timeAtHome={timeHome} onClickd={onClicked} />
         <TaskList
           onDeleted={(aa) => {
