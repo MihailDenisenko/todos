@@ -1,7 +1,11 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { formatDistance, toDate } from 'date-fns';
 import { ru } from 'date-fns/locale';
+import { AppContext } from '../../App';
+import { min } from 'date-fns/fp';
+import { PauseCircleOutlined, PlayCircleOutlined } from '@ant-design/icons';
 
 let spanClass = '';
 let buttonClass = '';
@@ -18,7 +22,58 @@ export default function Task({
   Created,
   isBtnTk,
   btnTasked,
+  minutes,
+  seconds,
 }) {
+  const { itemsAll, setItemsAll } = React.useContext(AppContext);
+
+  const [timeNow, setTimeNow] = React.useState('');
+  const [classN, setClassN] = React.useState('');
+  const [hours, setHours] = React.useState();
+  const [minuts, setMinuts] = React.useState(minutes);
+  const [secunds, setSecunds] = React.useState(seconds);
+  const [isActive, setIsActive] = React.useState(false);
+
+  React.useEffect(() => {
+    let interval = null;
+    if (isActive && (hours > 0 || minuts > 0 || secunds > 0)) {
+      interval = setInterval(() => {
+        if (secunds === 0) {
+          if (minuts === 0) {
+            if (hours === 0) {
+              clearInterval(interval);
+              setIsActive(false);
+            } else {
+              setHours(hours - 1);
+              setMinuts(59);
+              setSecunds(59);
+            }
+          } else {
+            setMinuts(minuts - 1);
+          }
+          setSecunds(59);
+        } else {
+          setSecunds(secunds - 1);
+        }
+      }, 1000);
+    } else {
+      clearInterval(interval);
+    }
+    let newItemAll = itemsAll.map((item) => {
+      if (item.id == id) {
+        item.minutes = minuts;
+        item.seconds = secunds;
+        return item;
+      }
+      return item;
+    });
+    setItemsAll(newItemAll);
+    return () => clearInterval(interval);
+  }, [isActive, hours, minuts, secunds]);
+
+  // console.log(typeof setMinuts)
+  // minuts === 55 ? clearTimeout(timeId): '';
+
   const [checked, setChecked] = React.useState(isCompleted);
   const [importance, setImportance] = React.useState(isDiscription);
 
@@ -28,10 +83,13 @@ export default function Task({
   const [classIconComplet, setClassIconComplet] = React.useState('');
 
   // eslint-disable-next-line no-unused-expressions
-  isBtnTk.length === 0 ? console.log('isBtnTk') : btnTasked(isBtnTk);
+  // isBtnTk.length === 0 ? console.log('isBtnTk') : btnTasked(isBtnTk);
+
+  // eslint-disable-next-line no-unused-expressions
 
   //  Функция на чекбокс
   function che() {
+    // console.log(checked)
     let sessi = JSON.parse(sessionStorage.getItem('items'));
     fetch(`https://676d32bb0e299dd2ddfec4d5.mockapi.io/items/${id}`, {
       method: 'PUT',
@@ -40,6 +98,17 @@ export default function Task({
     })
       .then((resp) => {
         if (resp.ok) {
+          let newItemsAll = itemsAll.map((item) => {
+            if (item.id === id) {
+              item.checked = !checked;
+              item.isCompleted= !item.isCompleted
+              return item;
+            }
+            return item;
+          });
+          // console.log(newItemsAll)
+
+          setItemsAll(newItemsAll);
           // eslint-disable-next-line no-unused-expressions
           sessi = sessi.map((ses) => {
             if (ses.id === id) {
@@ -47,9 +116,9 @@ export default function Task({
             }
             return ses;
           });
-          console.log(sessi);
-          sessionStorage.setItem('items', JSON.stringify(sessi));
-          sessionStorage.setItem('item', JSON.stringify(sessi));
+          // console.log(sessi);
+          // sessionStorage.setItem('items', JSON.stringify(sessi));
+          // sessionStorage.setItem('item', JSON.stringify(sessi));
 
           return resp.json();
         }
@@ -58,10 +127,12 @@ export default function Task({
         doneTaski(json, id);
       })
       .catch((er) => console.dir(er));
-
+    // console.log(id, checked)
+    
     setChecked(!checked);
     if (!importance && !checked) {
       // !checked ? setabc(" completedActive") : setabc(" Active");
+      setIsActive(false);
     } else {
       !checked ? setClassIconComplet(' editActiveComplet') : setClassIconComplet(' ');
       setChecked(!checked);
@@ -72,7 +143,6 @@ export default function Task({
 
   //  Функция на важность дела
   function editing(eve) {
-    // console.log(checked)
     if (checked) {
     } else {
       // console.log(checked)
@@ -88,7 +158,7 @@ export default function Task({
           }
         })
         .then((json) => {
-          console.log(json.isDiscription, 'isDiscr');
+          // console.log(json.isDiscription, 'isDiscr');
         })
         .catch((er) => console.dir(er));
     }
@@ -98,7 +168,6 @@ export default function Task({
   newTaskOutput !== '' ? newTaskInput(newTaskOutput) : '';
 
   const dat = toDate(Date.parse(Created));
-
   const formatDate = formatDistance(dat, new Date(), { locale: ru });
 
   if (checked && importance) {
@@ -117,11 +186,42 @@ export default function Task({
 
   return (
     <div className="view">
+      {/* <Timer /> */}
       <input className={!checked ? 'toggle ' : 'toggle completed'} type="checkbox" onChange={che} checked={checked} />
       <label>
-        <span className={`description ${spanClass}`}>{label}</span>
+        {!checked ? (
+          <span className={`description ${spanClass}`}>
+            {label}
+            <div className="play-pause">
+              <span className="play">
+                <PlayCircleOutlined onClick={() => setIsActive(true)} />
+              </span>
+              <span className="pause">
+                <PauseCircleOutlined onClick={() => setIsActive(false)} />
+              </span>
+              <span className={minuts > 5 ? 'timer' : 'timer-mini'}>{`${minuts}:${secunds}`}</span>
+            </div>
+          </span>
+        ) : (
+          <div>
+            <span className={`description ${spanClass}`}>
+              {label}
+              <div className="play-pause">
+                <span className="play dis">
+                  <PlayCircleOutlined onClick={() => {}} />
+                </span>
+                <span className="pause dis">
+                  <PauseCircleOutlined onClick={() => {}} />
+                </span>
+                <span className="timer dist">{`${minuts}:${secunds}`}</span>
+              </div>
+            </span>
+            {/* <Timer /> */}
+          </div>
+        )}
+
         {/* <span className={checked ? "description completed" : "description" + abc}>{label}</span> */}
-        <span className="created  description">Создано {formatDate}</span>
+        <span className="created  description">Создано {formatDate} </span>
       </label>
       {/* <button
         className={isDiscription && checked === true ? `icon icon-edit editActive editActiveComplet` : `icon icon-edit ${classIcon} ${classIconComplet}`}

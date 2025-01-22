@@ -1,16 +1,21 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-
 import TaskList from '../TaskList/TaskList ';
 import Footer from '../Footer';
+import { AppContext } from '../../App';
+const HomeContext = React.createContext();
 
 export default function Home() {
+  const {itemsAll, setItemsAll, setItems, items}= React.useContext(AppContext)
+
   const [newTaskOfTaskList, setNewTask] = React.useState('');
   const [allTasks, setTasks] = React.useState(0);
   const [doneTasks, setDoneTasks] = React.useState([]);
   const [Time, setTime] = React.useState('');
   const [don, setDon] = React.useState(0);
   const [isBTntsk, setIsBtnTsk] = React.useState([]);
+  const [i, setI] = React.useState('hohoho');
+
   let isDone = '';
 
   if (doneTasks === 1) isDone = 'но';
@@ -18,7 +23,12 @@ export default function Home() {
   else isDone = 'ны';
 
   const newTaskHome = (aaa) => {
+
     setNewTask(aaa);
+    let newItemsAll = itemsAll
+    newItemsAll.push(aaa);
+    setItemsAll(newItemsAll)
+    setItems(newItemsAll)
   };
 
   const donedTasks = (doneTasks) => {
