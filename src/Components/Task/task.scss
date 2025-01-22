@@ -181,3 +181,57 @@ icon.icon-edit {
   background-color: gray;
   border-radius: 5px;
 }
+
+.play-pause{
+  display: inline-block;
+  margin-left: 15px;
+  margin-right: 5px;
+  
+  
+  .timer {
+    margin-left: 10px;
+    color: lightgreen;
+  }
+   .timer-mini {
+    margin-left: 10px;
+    color: tomato;
+  }
+  
+  .play {
+  
+    margin-right: 5px;
+  }
+
+  .played {
+    background: greenyellow;
+    border-radius: 50%;
+  }
+  
+  .play:hover {
+    padding: 2;
+    background: greenyellow;
+    border-radius: 50%;
+  }
+  
+  .pause:hover {
+    padding: 2;
+   background: rgb(248, 162, 162);
+   border-radius: 60%;
+  }
+  .dis:hover {
+    border-radius: 50%;
+    background: lightgray;
+  }
+  .norm {
+    color: lightgreen;
+  }
+  .mini {
+    color: lightgreen;
+  }
+  .dist {
+    text-decoration:line-through;
+    color: grey;
+  }
+}
+
+

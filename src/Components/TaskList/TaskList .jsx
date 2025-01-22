@@ -4,22 +4,27 @@
 import React from 'react';
 import Task from '../Task/Task';
 import Sceleton from '../Sceleton/Sceleton';
+import { AppContext } from '../../App';
 
 let donedTask = 0;
 
 export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, tasksOf, isBtnTk }) {
+  
+  const { itemsAll, setItemsAll, items, setItems, filterBtn } = React.useContext(AppContext);
   const [useItem, setUseItem] = React.useState('');
   // eslint-disable-next-line no-unused-vars
   const [task, setTask] = React.useState([]);
   const [taskAdd, setTaskAdd] = React.useState([newTaskAdd]);
-  const [items, setItems] = React.useState([]);
+  // const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
   const [isBtnTask, seIsBtnTask] = React.useState([]);
 
   const [newTaskF, setnewTaskF] = React.useState([]);
+
   const newTaskIn = (newT) => {
-    setnewTaskF(newT);
+    // setnewTaskF(newT);
+    // let newTaskAll = itemsAll;
   };
 
   React.useEffect(() => {
@@ -35,8 +40,8 @@ export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, ta
         return resp.json();
       })
       .then((json) => {
-        setItems(json);
-
+        setItems(json)
+        setItemsAll(json)
         sessionStorage.setItem('item', JSON.stringify(json));
         sessionStorage.setItem('items', JSON.stringify(items));
         setTimeout(() => {
@@ -73,6 +78,7 @@ export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, ta
   items.length !== 0 ? allTasks(items) : '';
 
   function deleteElement(pos) {
+    // console.log(typeof pos)
     fetch(`https://676d32bb0e299dd2ddfec4d5.mockapi.io/items/${pos}`, {
       method: 'DELETE',
     })
@@ -81,11 +87,17 @@ export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, ta
           let a = items.filter((item) => item.id !== pos);
           setItems(a);
           tasksOf(items);
+          let newItemsAll = itemsAll.filter(item => item.id!==pos)
+          setItemsAll(newItemsAll)
           return resp.json();
         }
       })
-      .then((json) => {});
+      .then((json) => {
+        // console.log(json)
+      });
   }
+
+  
 
   React.useEffect(() => {
     if (isBtnTask.length !== 0) {
@@ -99,7 +111,7 @@ export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, ta
   // eslint-disable-next-line no-unused-expressions
 
   const elements = items.map((item) => {
-    const { id, name, isCompleted, isDiscription, Created } = item;
+    const { id, name, isCompleted, isDiscription, Created, minutes, seconds } = item;
 
     return (
       <li key={id} className={`list-group-item ${useItem}`}>
@@ -117,11 +129,14 @@ export default function TaskList({ newTask, allTasks, donedTasks, newTaskAdd, ta
           Created={Created}
           isBtnTk={isBtnTk}
           btnTasked={isBtnTasked}
+          minutes={minutes}
+          seconds={seconds}
         />
       </li>
     );
+
   });
-  
+
   return (
     <ul className="list-group todo-list">
       {isLoading

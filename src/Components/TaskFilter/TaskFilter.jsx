@@ -1,34 +1,51 @@
 import React from 'react';
+import { AppContext } from '../../App';
 
 export default function TaskFilter({ val, typeId, onClicked }) {
+  const { filterBtn, setFilterBtn, itemsAll, setItems, items } = React.useContext(AppContext);
   let btnElem;
 
   const [elemActive, setElementActive] = React.useState(0);
 
-  const a = JSON.parse(sessionStorage.getItem('item'));
+  // const a = JSON.parse(sessionStorage.getItem('item'));
 
   const buttonSetElement = (btn, index) => {
     if (btn === 'Все') {
-      btnElem = a.map((abc) => abc);
+      // console.log(itemsAll)
+      let newItems = itemsAll.map((item) => item);
+      setItems(newItems)
     }
     // eslint-disable-next-line no-unused-expressions
-    else if (btn === 'Aктивные') {
-      btnElem = a.filter((abc) => !abc.isCompleted);
+    if (btn === 'Aктивные') {
+      // console.log(itemsAll)
+      let newItems = itemsAll.filter((item) => !item.isCompleted);
+      setItems(newItems);
     }
     // eslint-disable-next-line no-unused-expressions
-    else {
-      btnElem = a.filter((abc) => abc.isCompleted);
+    else if (btn === 'Выполненные') {
+      // console.log(itemsAll)
+      let newItems = itemsAll.filter((item) => item.isCompleted);
+      setItems(newItems);
     }
-    onClicked(btnElem, btn);
-
-    setElementActive(index);
   };
+
+  // const newBtn = (btn) => {
+
+  //   let newItems = itemsAll.filter(item => item.isCompleted)
+  //   setItems(newItems)
+  // }
+
 
   const btnsFotter = ['Все', 'Aктивные', 'Выполненные'];
   const buttons = btnsFotter.map((btn, ind) => {
     return (
       <li key={ind}>
-        <button onClick={() => buttonSetElement(btn, ind)} id={ind} className={elemActive === ind ? 'selected' : ''}>
+        <button onClick={() => {
+          setFilterBtn(btn)
+          buttonSetElement(btn, ind)
+          setElementActive(ind)
+          // console.log(itemsAll)
+        }} id={ind} className={elemActive === ind ? 'selected' : ''}>
           {btn}
         </button>
       </li>
