@@ -38,7 +38,7 @@ export default function Task({
   React.useEffect(() => {
     let interval = null;
     if (isActive && (hours > 0 || minuts > 0 || secunds > 0)) {
-      interval = setInterval(() => {
+      interval = setTimeout(() => {
         if (secunds === 0) {
           if (minuts === 0) {
             if (hours === 0) {
@@ -58,7 +58,7 @@ export default function Task({
         }
       }, 1000);
     } else {
-      clearInterval(interval);
+      clearTimeout(interval);
     }
     let newItemAll = itemsAll.map((item) => {
       if (item.id === id) {
@@ -69,7 +69,7 @@ export default function Task({
       return item;
     });
     setItemsAll(newItemAll);
-    return () => clearInterval(interval);
+    return () => clearTimeout(interval);
   }, [isActive, hours, minuts, secunds]);
 
   // console.log(typeof setMinuts)
@@ -117,9 +117,6 @@ export default function Task({
             }
             return ses;
           });
-          // console.log(sessi);
-          // sessionStorage.setItem('items', JSON.stringify(sessi));
-          // sessionStorage.setItem('item', JSON.stringify(sessi));
 
           return resp.json();
         }

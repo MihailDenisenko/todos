@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { AppContext } from '../../App';
 
@@ -42,7 +43,7 @@ export default function TaskFilter({ val, typeId, onClicked }) {
         <button
           onClick={() => {
             setFilterBtn(btn);
-            buttonSetElement(btn, ind);
+            buttonSetElement(btn, ind)
             setElementActive(ind);
             // console.log(itemsAll)
           }}
