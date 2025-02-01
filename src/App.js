@@ -15,11 +15,9 @@ import { Button } from 'antd';
 export const AppContext = React.createContext();
 
 export default function App() {
-
-  const count = useSelector((state) => state.counter.count)
+  const count = useSelector((state) => state.counter.count);
   const nameed = useSelector((state) => state.counter.nameed);
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
 
   const [i, setI] = React.useState(0);
   const [items, setItems] = React.useState([]);

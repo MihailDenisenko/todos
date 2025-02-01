@@ -43,7 +43,7 @@ export default function TaskFilter({ val, typeId, onClicked }) {
         <button
           onClick={() => {
             setFilterBtn(btn);
-            buttonSetElement(btn, ind)
+            buttonSetElement(btn, ind);
             setElementActive(ind);
             // console.log(itemsAll)
           }}
