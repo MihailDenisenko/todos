@@ -35,45 +35,7 @@ export default function Task({
   const [secunds, setSecunds] = React.useState(seconds);
   const [isActive, setIsActive] = React.useState(false);
 
-  React.useEffect(() => {
-    let interval = null;
-    if (isActive && (hours > 0 || minuts > 0 || secunds > 0)) {
-      interval = setTimeout(() => {
-        if (secunds === 0) {
-          if (minuts === 0) {
-            if (hours === 0) {
-              clearInterval(interval);
-              setIsActive(false);
-            } else {
-              setHours(hours - 1);
-              setMinuts(59);
-              setSecunds(59);
-            }
-          } else {
-            setMinuts(minuts - 1);
-          }
-          setSecunds(59);
-        } else {
-          setSecunds(secunds - 1);
-        }
-      }, 1000);
-    } else {
-      clearTimeout(interval);
-    }
-    let newItemAll = itemsAll.map((item) => {
-      if (item.id === id) {
-        item.minutes = minuts;
-        item.seconds = secunds;
-        return item;
-      }
-      return item;
-    });
-    setItemsAll(newItemAll);
-    return () => clearTimeout(interval);
-  }, [isActive, hours, minuts, secunds]);
-
-  // console.log(typeof setMinuts)
-  // minuts === 55 ? clearTimeout(timeId): '';
+ 
 
   const [checked, setChecked] = React.useState(isCompleted);
   const [importance, setImportance] = React.useState(isDiscription);
@@ -190,15 +152,7 @@ export default function Task({
         {!checked ? (
           <span className={`description ${spanClass}`}>
             {label}
-            <div className="play-pause">
-              <span className="play">
-                <PlayCircleOutlined onClick={() => setIsActive(true)} />
-              </span>
-              <span className="pause">
-                <PauseCircleOutlined onClick={() => setIsActive(false)} />
-              </span>
-              <span className={minuts > 5 ? 'timer' : 'timer-mini'}>{`${minuts}:${secunds}`}</span>
-            </div>
+            
           </span>
         ) : (
           <div>
