@@ -158,15 +158,7 @@ export default function Task({
           <div>
             <span className={`description ${spanClass}`}>
               {label}
-              <div className="play-pause">
-                <span className="play dis">
-                  <PlayCircleOutlined onClick={() => {}} />
-                </span>
-                <span className="pause dis">
-                  <PauseCircleOutlined onClick={() => {}} />
-                </span>
-                <span className="timer dist">{`${minuts}:${secunds}`}</span>
-              </div>
+              
             </span>
             {/* <Timer /> */}
           </div>
